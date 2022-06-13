@@ -18,11 +18,13 @@ builder.Services.AddScoped(typeof(IUserService), typeof(UserService));
 builder.Services.AddScoped(typeof(IRoomService), typeof(RoomService));
 builder.Services.AddScoped(typeof(IMeetingService), typeof(MeetingService));
 builder.Services.AddScoped(typeof(ILocationService), typeof(LocationService));
+builder.Services.AddScoped(typeof(IInvitationService), typeof(InvitationService));
 
 builder.Services.AddTransient(typeof(IUserRepository), typeof(UserRepository));
 builder.Services.AddTransient(typeof(IRoomRepository), typeof(RoomRepository));
 builder.Services.AddTransient(typeof(IMeetingRepository), typeof(MeetingRepository));
 builder.Services.AddTransient(typeof(ILocationRepository), typeof(LocationRepository));
+builder.Services.AddTransient(typeof(IInvitationRepository), typeof(InvitationRepository));
 
 
 var config = new MapperConfiguration(cfg =>

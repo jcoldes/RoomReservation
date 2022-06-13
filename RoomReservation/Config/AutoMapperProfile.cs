@@ -17,6 +17,7 @@ namespace RoomReservation.Config
             CreateMap<LocationDTO, Location>().ReverseMap();
             CreateMap<MeetingDTO, Meeting>().ReverseMap();
             CreateMap<RoomDTO, Room>().ReverseMap();
+            CreateMap<InvitationDTO, Invitation>().ReverseMap();
         }
     }
 }
