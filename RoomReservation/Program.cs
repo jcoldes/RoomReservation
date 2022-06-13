@@ -48,13 +48,13 @@ if (!app.Environment.IsDevelopment())
 }
 
 
-using (var scope = app.Services.CreateScope())
+/*using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
     var context = services.GetRequiredService<RoomReservationContext>();
-    context.Database.EnsureCreated();
-}
+    //context.Database.EnsureCreated();
+}*/
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

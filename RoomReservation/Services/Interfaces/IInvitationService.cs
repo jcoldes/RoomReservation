@@ -11,8 +11,8 @@ namespace RoomReservation.Services.Interfaces
     {
         InvitationDTO Get(int id);
         IEnumerable<InvitationDTO> GetAll();
-        void Create(InvitationDTO invitation);
-        void Update(InvitationDTO invitation);
+        void Create(InvitationDTO invitationDto);
+        void Update(InvitationDTO invitationDto);
         void Delete(int id);
     }
 }

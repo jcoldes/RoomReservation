@@ -1,4 +1,7 @@
-﻿using RoomReservation.DTOs;
+﻿using AutoMapper;
+using RoomReservation.DTOs;
+using RoomReservation.Models;
+using RoomReservation.Respositories.Interfaces;
 using RoomReservation.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,29 +13,39 @@ namespace RoomReservation.Services
 {
     public class InvitationService : IInvitationService
     {
-        public void Create(InvitationDTO invitation)
+        private readonly IInvitationRepository _repository;
+        private readonly IMapper _mapper;
+
+        public InvitationService(IInvitationRepository repository, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _repository = repository;
+            _mapper = mapper;
+        }
+
+        public void Create(InvitationDTO invitationDto)
+        {
+            var invitation = _mapper.Map<Invitation>(invitationDto);
+            _repository.Create(invitation);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _repository.Delete(id);
         }
 
         public InvitationDTO Get(int id)
         {
-            throw new NotImplementedException();
+            return _mapper.Map<InvitationDTO>(_repository.Get(id));
         }
 
         public IEnumerable<InvitationDTO> GetAll()
         {
-            throw new NotImplementedException();
+            return _mapper.Map<IEnumerable<InvitationDTO>>(_repository.GetAll());
         }
 
-        public void Update(InvitationDTO invitation)
+        public void Update(InvitationDTO invitationDto)
         {
-            throw new NotImplementedException();
+            _repository.Update(_mapper.Map<Invitation>(invitationDto));
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿using RoomReservation.DTOs;
+﻿using AutoMapper;
+using RoomReservation.DTOs;
+using RoomReservation.Models;
+using RoomReservation.Respositories.Interfaces;
 using RoomReservation.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,29 +13,38 @@ namespace RoomReservation.Services
 {
     public class LocationService : ILocationService
     {
-        public void Create(LocationDTO invitation)
+        private readonly ILocationRepository _repository;
+        private readonly IMapper _mapper;
+
+        public LocationService(ILocationRepository repository, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _repository = repository;
+            _mapper = mapper;
+        }
+
+        public void Create(LocationDTO locationDto)
+        {
+            _repository.Create(_mapper.Map<Location>(locationDto));
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _repository.Delete(id);
         }
 
         public LocationDTO Get(int id)
         {
-            throw new NotImplementedException();
+            return _mapper.Map<LocationDTO>(_repository.Get(id));
         }
 
         public IEnumerable<LocationDTO> GetAll()
         {
-            throw new NotImplementedException();
+            return _mapper.Map<IEnumerable<LocationDTO>>(_repository.GetAll());
         }
 
-        public void Update(LocationDTO invitation)
+        public void Update(LocationDTO locationDto)
         {
-            throw new NotImplementedException();
+            _repository.Update(_mapper.Map<Location>(locationDto));
         }
     }
 }
