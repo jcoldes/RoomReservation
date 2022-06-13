@@ -17,5 +17,6 @@ namespace RoomReservation.Databases
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<Meeting> Meetings { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
+        public virtual DbSet<Invitation> Invitations { get; set; }
     }
 }

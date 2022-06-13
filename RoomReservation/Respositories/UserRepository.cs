@@ -1,4 +1,5 @@
-﻿using RoomReservation.Models;
+﻿using RoomReservation.Databases;
+using RoomReservation.Models;
 using RoomReservation.Respositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,29 +11,38 @@ namespace RoomReservation.Respositories
 {
     public class UserRepository : IUserRepository
     {
+        private readonly RoomReservationContext _context;
+
+        public UserRepository(RoomReservationContext context)
+        {
+            _context = context;
+        }
         public void Create(User user)
         {
-            throw new NotImplementedException();
+            _context.Users.Add(user);
+            _context.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _context.Users.Remove(Get(id));
+            _context.SaveChanges();
         }
 
         public User Get(int id)
         {
-            throw new NotImplementedException();
+            return _context.Users.First(u => u.Id == id);
         }
 
         public IEnumerable<User> GetAll()
         {
-            throw new NotImplementedException();
+            return _context.Users.ToList();
         }
 
         public void Update(User user)
         {
-            throw new NotImplementedException();
+            _context.Users.Update(user);
+            _context.SaveChanges();
         }
     }
 }

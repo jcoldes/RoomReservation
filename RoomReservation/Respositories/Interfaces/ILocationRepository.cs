@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RoomReservation.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,10 @@ namespace RoomReservation.Respositories.Interfaces
 {
     public interface ILocationRepository
     {
- 
+        Location Get(int id);
+        IEnumerable<Location> GetAll();
+        void Create(Location user);
+        void Update(Location user);
+        void Delete(int id);
     }
 }
