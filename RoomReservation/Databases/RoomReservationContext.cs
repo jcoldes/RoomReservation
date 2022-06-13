@@ -11,14 +11,7 @@ namespace RoomReservation.Databases
 {
     public class RoomReservationContext : DbContext
     {
-        public RoomReservationContext() { }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            SqlConnection connection = new SqlConnection();
-            connection.ConnectionString = "Data Source=localhost;Database=RoomReservation;integrated security=true;Persist Security Info=True;Connect Timeout=300;";
-            optionsBuilder.UseSqlServer(connection);
-        }
+        public RoomReservationContext(DbContextOptions<RoomReservationContext> options) : base(options) { }
 
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Location> Locations { get; set; }

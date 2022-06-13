@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using RoomReservation.Config;
 using RoomReservation.Databases;
 using RoomReservation.Respositories;
@@ -9,6 +10,8 @@ using RoomReservation.Services.Interfaces;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<RoomReservationContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("RoomReservation")));
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddMvc();
@@ -42,6 +45,15 @@ if (!app.Environment.IsDevelopment())
 {
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<RoomReservationContext>();
+    context.Database.EnsureCreated();
 }
 
 app.UseHttpsRedirection();
